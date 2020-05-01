@@ -2,7 +2,7 @@
 package proyecto.entidades;
 
 import java.util.Date;
-
+//hola mundo cruel
 public class Encuentro {
     
     private Equipo equipos[];
