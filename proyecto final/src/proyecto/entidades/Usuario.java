@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package proyecto.entidades;
 
 /**
@@ -11,4 +7,39 @@ package proyecto.entidades;
  */
 public class Usuario {
     
+    private String nombre;
+    private String Id;
+    private String Contraseña;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String Id) {
+        this.Id = Id;
+    }
+
+    public String getContraseña() {
+        return Contraseña;
+    }
+
+    public void setContraseña(String Contraseña) {
+        this.Contraseña = Contraseña;
+    }
+    
+    
+    public Boolean LogIn(String nombre, String Contraseña){
+        this.nombre= nombre;
+        this.Contraseña=  Contraseña;
+        return true;
+    }
 }
+
