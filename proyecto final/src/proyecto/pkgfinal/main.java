@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package proyecto.pkgfinal;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -11,12 +9,51 @@ package proyecto.pkgfinal;
  */
 public class main extends javax.swing.JFrame {
 
-    /**
-     * Creates new form main
-     */
+    static int hor = 0, min = 0, seg = 0, miliS = 0;
+
+    //Thread cronometro = new Thread();
     public main() {
         initComponents();
+jlbEquipo.setText(JOptionPane.showInputDialog("nombre del primer equipo"));
+jlbEquipo1.setText(JOptionPane.showInputDialog("nombre del segundo equipo"));
+        cronometro.start();
+
     }
+    Thread cronometro = new Thread() {
+
+        public void run() {
+            //int hor = 0, min = 0, seg = 0, miliS = 0;
+            for (;;) {//ciclo infinito para el cronometro/tiempo/reloj...
+                try {
+                    miliS++;
+                    if (miliS > 99) {
+                        miliS = 0;
+                        seg++;
+                    }
+                    if (seg > 59) {
+                        miliS = 0;
+                        seg = 0;
+                        min++;
+                    }
+                    //  if (min > 59) {
+                    //      miliS = 0;
+                    //      seg = 0;
+                    //      min = 0;
+                    //      hor++;
+                    //  }
+                    if (min == 1) {
+                        JOptionPane.showMessageDialog(null, "fin del partido....");
+                        cronometro.stop();
+                    }
+                    tiempo.setText(min + ":" + seg + ":" + miliS);
+
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+
+                }
+            }
+        }
+    };
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,17 +64,37 @@ public class main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tiempo = new javax.swing.JLabel();
+        jlbEquipo1 = new javax.swing.JLabel();
+        jlbEquipo = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        tiempo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        tiempo.setText("0:0:0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(jlbEquipo)
+                .addGap(53, 53, 53)
+                .addComponent(tiempo)
+                .addGap(63, 63, 63)
+                .addComponent(jlbEquipo1)
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tiempo)
+                    .addComponent(jlbEquipo1)
+                    .addComponent(jlbEquipo))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,5 +136,8 @@ public class main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jlbEquipo;
+    private javax.swing.JLabel jlbEquipo1;
+    private javax.swing.JLabel tiempo;
     // End of variables declaration//GEN-END:variables
 }
