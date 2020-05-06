@@ -3,12 +3,84 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto.entidades;
+package futbol;
 
 /**
  *
- * @author koro
+ * @author Usuario Final
  */
 public class Jugador {
     
+    private String nombre;
+    private String apellido;
+    private String apodo;
+    private int numero;
+    private String posicion;
+    private Equipo equipo;
+
+    public Jugador(String nombre, String apellido, String apodo, int numero, String posicion, Equipo equipo) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.apodo = apodo;
+        this.numero = numero;
+        this.posicion = posicion;
+        this.equipo = equipo;
+    }
+    
+    
+    public boolean Jugar (){
+        return true;
+    }
+    
+    public boolean Banca(){
+        return true;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getApodo() {
+        return apodo;
+    }
+
+    public void setApodo(String apodo) {
+        this.apodo = apodo;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public String getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(String posicion) {
+        this.posicion = posicion;
+    }
+
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }
 }
