@@ -5,6 +5,9 @@
  */
 package proyecto.vistas;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author Usuario Final
@@ -12,7 +15,11 @@ package proyecto.vistas;
 public class EncuentroVis extends javax.swing.JFrame {
 
     public EncuentroVis() {
-        initComponents();  
+        initComponents();
+        String pattern = "HH:mm:ss";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String date = simpleDateFormat.format(new Date());
+        jlbTiempo.setText(date);
     }
 
     /**
