@@ -10,6 +10,14 @@ public class Evento {
     private Jugador jugador[];
     private String nota;
 
+    public Evento(ArrayList<Evento> evento, Equipo[] equipo, Jugador[] jugador, String nota, Date timepo) {
+        this.evento = evento;
+        this.equipo = equipo;
+        this.jugador = jugador;
+        this.nota = nota;
+        this.timepo = timepo;
+    }
+
     public ArrayList<Evento> getEvento() {
         return evento;
     }

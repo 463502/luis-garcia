@@ -2,15 +2,21 @@
 package proyecto.entidades;
 
 import java.util.Date;
-//hola mundo cruel
 public class Encuentro {
     
     private Equipo equipos[];
     private double duracion;
     private Date tiempo;
+
+    public Encuentro(Equipo[] equipos, double duracion, Date tiempo) {
+        this.equipos = equipos;
+        this.duracion = duracion;
+        this.tiempo = tiempo;
+    }
     
     public boolean registrarEquipos(){
-        
+        this.equipos = equipos;
+
         return true;
     }
     

@@ -12,6 +12,11 @@ public class Torneo {
     private String nombre;
     private String ano;
     private ArrayList<Equipo> equipos= new ArrayList();
+
+    public Torneo(String nombre, String ano) {
+        this.nombre = nombre;
+        this.ano = ano;
+    }
     
     public String getNombre() {
         return nombre;

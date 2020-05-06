@@ -11,6 +11,12 @@ public class Usuario {
     private String Id;
     private String Contraseña;
 
+    public Usuario(String nombre, String Id, String Contraseña) {
+        this.nombre = nombre;
+        this.Id = Id;
+        this.Contraseña = Contraseña;
+    }
+
     public String getNombre() {
         return nombre;
     }
