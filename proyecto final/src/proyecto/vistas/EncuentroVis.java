@@ -16,7 +16,7 @@ public class EncuentroVis extends javax.swing.JFrame {
 
     public EncuentroVis() {
         initComponents();
-        String pattern = "HH:mm:ss";
+        String pattern = "hh:mm:ss";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         String date = simpleDateFormat.format(new Date());
         jlbTiempo.setText(date);
@@ -64,14 +64,17 @@ public class EncuentroVis extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(0, 51, 102));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Configurar Encuentro");
 
         jButton2.setBackground(new java.awt.Color(0, 51, 102));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Registrar Equipos");
 
         jButton3.setBackground(new java.awt.Color(0, 51, 102));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Registrar Deportistas");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +84,7 @@ public class EncuentroVis extends javax.swing.JFrame {
 
         jButton4.setBackground(new java.awt.Color(0, 51, 102));
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Registrar Eventos");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,9 +93,11 @@ public class EncuentroVis extends javax.swing.JFrame {
         });
 
         jButton5.setBackground(new java.awt.Color(0, 51, 102));
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("INICIAR");
 
         jButton6.setBackground(new java.awt.Color(0, 51, 102));
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("TERMINAR");
 
         jlbTiempo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -151,7 +157,7 @@ public class EncuentroVis extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/futbol/futb.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto/imagenes/futb.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
