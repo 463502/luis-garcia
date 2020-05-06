@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package futbol.vistas;
+package proyecto.vistas;
 
 /**
  *
@@ -11,11 +11,8 @@ package futbol.vistas;
  */
 public class EncuentroVis extends javax.swing.JFrame {
 
-    /**
-     * Creates new form EncuentroVis
-     */
     public EncuentroVis() {
-        initComponents();
+        initComponents();  
     }
 
     /**
@@ -38,7 +35,7 @@ public class EncuentroVis extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        jlbTiempo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
@@ -90,9 +87,9 @@ public class EncuentroVis extends javax.swing.JFrame {
         jButton6.setBackground(new java.awt.Color(0, 51, 102));
         jButton6.setText("TERMINAR");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("00:34");
+        jlbTiempo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jlbTiempo.setForeground(new java.awt.Color(255, 255, 255));
+        jlbTiempo.setText("00:34");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -120,7 +117,7 @@ public class EncuentroVis extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(jlbTiempo)
                         .addGap(46, 46, 46))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -143,7 +140,7 @@ public class EncuentroVis extends javax.swing.JFrame {
                     .addComponent(jButton5)
                     .addComponent(jButton6))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlbTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
@@ -236,8 +233,8 @@ public class EncuentroVis extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jlbTiempo;
     // End of variables declaration//GEN-END:variables
 }

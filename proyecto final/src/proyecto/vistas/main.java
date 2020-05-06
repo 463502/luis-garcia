@@ -14,8 +14,6 @@ public class main extends javax.swing.JFrame {
     //Thread cronometro = new Thread();
     public main() {
         initComponents();
-jlbEquipo.setText(JOptionPane.showInputDialog("nombre del primer equipo"));
-jlbEquipo1.setText(JOptionPane.showInputDialog("nombre del segundo equipo"));
         cronometro.start();
 
     }
