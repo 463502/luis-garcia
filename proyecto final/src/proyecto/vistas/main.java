@@ -1,5 +1,5 @@
 
-package proyecto.pkgfinal;
+package proyecto.vistas;
 
 import javax.swing.JOptionPane;
 
