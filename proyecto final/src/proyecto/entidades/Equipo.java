@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package futbol;
+//package futbol;  esto es lo que tu tenias
+
+package proyecto.entidades;//tiene que ir asi
 
 import java.util.ArrayList;
 //import futbol.Jugador;
