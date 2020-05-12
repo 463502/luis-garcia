@@ -7,6 +7,9 @@ package proyecto.vistas;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import static proyecto.vistas.main.miliS;
 
 /**
  *
@@ -14,13 +17,43 @@ import java.util.Date;
  */
 public class EncuentroVis extends javax.swing.JFrame {
 
+    static int hor = 0, min = 0, seg = 0, miliS = 0;
+
     public EncuentroVis() {
         initComponents();
-        String pattern = "hh:mm:ss";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        String date = simpleDateFormat.format(new Date());
-        jlbTiempo.setText(date);
+        // String pattern = "hh:mm:ss";
+        // SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        // String date = simpleDateFormat.format(new Date());
+        // jlbTiempo.setText(date);
     }
+    Thread cronometro = new Thread() {
+
+        public void run() {
+            for (;;) {//ciclo infinito para el cronometro/tiempo/reloj...
+                try {
+                    miliS++;
+                    if (miliS > 99) {
+                        miliS = 0;
+                        seg++;
+                    }
+                    if (seg > 59) {
+                        miliS = 0;
+                        seg = 0;
+                        min++;
+                    }                  
+                    if (min == 1) {
+                        JOptionPane.showMessageDialog(null, "fin del partido....");
+                        cronometro.stop();
+                    }
+                    jlbTiempo.setText(min + ":" + seg + ":" + miliS);
+
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+
+                }
+            }
+        }
+    };
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,12 +69,12 @@ public class EncuentroVis extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnConguracionEncuentro = new javax.swing.JButton();
+        btnRegistroEquipo = new javax.swing.JButton();
+        btnRegistrarDeportistas = new javax.swing.JButton();
+        btnRegistrarEvento = new javax.swing.JButton();
+        btnIniciar = new javax.swing.JButton();
+        btnTerminar = new javax.swing.JButton();
         jlbTiempo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -62,43 +95,58 @@ public class EncuentroVis extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("DEPORTIVO");
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 102));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Configurar Encuentro");
-
-        jButton2.setBackground(new java.awt.Color(0, 51, 102));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Registrar Equipos");
-
-        jButton3.setBackground(new java.awt.Color(0, 51, 102));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Registrar Deportistas");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnConguracionEncuentro.setBackground(new java.awt.Color(0, 51, 102));
+        btnConguracionEncuentro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnConguracionEncuentro.setForeground(new java.awt.Color(255, 255, 255));
+        btnConguracionEncuentro.setText("Configurar Encuentro");
+        btnConguracionEncuentro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnConguracionEncuentroActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(0, 51, 102));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Registrar Eventos");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistroEquipo.setBackground(new java.awt.Color(0, 51, 102));
+        btnRegistroEquipo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnRegistroEquipo.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistroEquipo.setText("Registrar Equipos");
+
+        btnRegistrarDeportistas.setBackground(new java.awt.Color(0, 51, 102));
+        btnRegistrarDeportistas.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnRegistrarDeportistas.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrarDeportistas.setText("Registrar Deportistas");
+        btnRegistrarDeportistas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnRegistrarDeportistasActionPerformed(evt);
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(0, 51, 102));
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("INICIAR");
+        btnRegistrarEvento.setBackground(new java.awt.Color(0, 51, 102));
+        btnRegistrarEvento.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnRegistrarEvento.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrarEvento.setText("Registrar Eventos");
+        btnRegistrarEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarEventoActionPerformed(evt);
+            }
+        });
 
-        jButton6.setBackground(new java.awt.Color(0, 51, 102));
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("TERMINAR");
+        btnIniciar.setBackground(new java.awt.Color(0, 51, 102));
+        btnIniciar.setForeground(new java.awt.Color(255, 255, 255));
+        btnIniciar.setText("INICIAR");
+        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarActionPerformed(evt);
+            }
+        });
+
+        btnTerminar.setBackground(new java.awt.Color(0, 51, 102));
+        btnTerminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnTerminar.setText("TERMINAR");
+        btnTerminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTerminarActionPerformed(evt);
+            }
+        });
 
         jlbTiempo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jlbTiempo.setForeground(new java.awt.Color(255, 255, 255));
@@ -112,14 +160,14 @@ public class EncuentroVis extends javax.swing.JFrame {
                 .addGap(76, 76, 76)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnConguracionEncuentro, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRegistroEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRegistrarDeportistas, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnRegistrarEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(44, Short.MAX_VALUE)
@@ -141,17 +189,17 @@ public class EncuentroVis extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addGap(66, 66, 66)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnConguracionEncuentro, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistroEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistrarDeportistas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistrarEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(btnIniciar)
+                    .addComponent(btnTerminar))
                 .addGap(18, 18, 18)
                 .addComponent(jlbTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -192,13 +240,29 @@ public class EncuentroVis extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnRegistrarDeportistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarDeportistasActionPerformed
+        Deportistas deportistaDialog = new Deportistas(this, true);
+        deportistaDialog.setVisible(true);
+    }//GEN-LAST:event_btnRegistrarDeportistasActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnRegistrarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarEventoActionPerformed
+        Eventos eventosDialog = new Eventos(this, true);
+        eventosDialog.setVisible(true);
+    }//GEN-LAST:event_btnRegistrarEventoActionPerformed
+
+    private void btnConguracionEncuentroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConguracionEncuentroActionPerformed
+        Registro registroDialog = new Registro(this, true);
+        registroDialog.setVisible(true);
+
+    }//GEN-LAST:event_btnConguracionEncuentroActionPerformed
+
+    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+        cronometro.start();
+    }//GEN-LAST:event_btnIniciarActionPerformed
+
+    private void btnTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarActionPerformed
+        cronometro.stop();
+    }//GEN-LAST:event_btnTerminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,12 +300,12 @@ public class EncuentroVis extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton btnConguracionEncuentro;
+    private javax.swing.JButton btnIniciar;
+    private javax.swing.JButton btnRegistrarDeportistas;
+    private javax.swing.JButton btnRegistrarEvento;
+    private javax.swing.JButton btnRegistroEquipo;
+    private javax.swing.JButton btnTerminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
