@@ -5,17 +5,21 @@
  */
 package proyecto.vistas;
 
+import java.util.ArrayList;
+import proyecto.entidades.Evento;
+
 /**
  *
  * @author Usuario Final
  */
-public class Eventos extends javax.swing.JFrame {
-
+public class Eventos extends javax.swing.JDialog {
+    ArrayList<Evento>evento;
     /**
      * Creates new form Eventos
      */
-    public Eventos(java.awt.Frame parent, boolean modal) {
+    public Eventos(java.awt.Frame parent, boolean modal, ArrayList<Evento>evento) {
         initComponents();
+        this.evento=evento;
     }
 
     /**

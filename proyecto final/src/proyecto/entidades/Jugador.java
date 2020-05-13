@@ -18,15 +18,18 @@ public class Jugador {
     private String apodo;
     private int numero;
     private String posicion;
-    private Equipo equipo;
+    private String equipo;
 
-    public Jugador(String nombre, String apellido, String apodo, int numero, String posicion, Equipo equipo) {
+    public Jugador(String nombre, String apellido, String apodo, int numero, String posicion, String equipo) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.apodo = apodo;
         this.numero = numero;
         this.posicion = posicion;
         this.equipo = equipo;
+    }
+
+    public Jugador() {
     }
     
     
@@ -78,11 +81,11 @@ public class Jugador {
         this.posicion = posicion;
     }
 
-    public Equipo getEquipo() {
+    public String getEquipo() {
         return equipo;
     }
 
-    public void setEquipo(Equipo equipo) {
+    public void setEquipo(String equipo) {
         this.equipo = equipo;
     }
 }
