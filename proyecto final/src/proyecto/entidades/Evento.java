@@ -9,13 +9,18 @@ public class Evento {
     private Equipo equipo[];
     private Jugador jugador[];
     private String nota;
+    private Date tiempo;
 
-    public Evento(ArrayList<Evento> evento, Equipo[] equipo, Jugador[] jugador, String nota, Date timepo) {
+    public Evento(ArrayList<Evento> evento, Equipo[] equipo, Jugador[] jugador, String nota, Date tiempo) {
         this.evento = evento;
         this.equipo = equipo;
         this.jugador = jugador;
         this.nota = nota;
-        this.timepo = timepo;
+        this.tiempo = tiempo;
+    }
+
+    public Evento() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public ArrayList<Evento> getEvento() {
@@ -25,7 +30,6 @@ public class Evento {
     public void setEvento(ArrayList<Evento> evento) {
         this.evento = evento;
     }
-    private Date timepo;
 
     public boolean mostrar() {
 
@@ -57,11 +61,11 @@ public class Evento {
     }
 
     public Date getTimepo() {
-        return timepo;
+        return tiempo;
     }
 
-    public void setTimepo(Date timepo) {
-        this.timepo = timepo;
+    public void setTiempo(Date timepo) {
+        this.tiempo = timepo;
     }
 
 }

@@ -48,13 +48,13 @@ public class EncuentroVis extends javax.swing.JFrame {
                         seg = 0;
                         min++;
                     }                  
-                    if (min == 1) {
+                    if (min == 90) {
                         JOptionPane.showMessageDialog(null, "fin del partido....");
                         cronometro.stop();
                     }
                     jlbTiempo.setText(min + ":" + seg + ":" + miliS);
 
-                    Thread.sleep(10);
+                    Thread.sleep(5);
                 } catch (InterruptedException e) {
 
                 }
@@ -247,7 +247,7 @@ public class EncuentroVis extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarDeportistasActionPerformed
 
     private void btnRegistrarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarEventoActionPerformed
-        JDialog RegistroEventosDialog = new Eventos(this, true, evento);
+        JDialog RegistroEventosDialog = new RegistrarEvento(this, true, evento);
         RegistroEventosDialog.setVisible(true);
     }//GEN-LAST:event_btnRegistrarEventoActionPerformed
 
@@ -262,7 +262,7 @@ public class EncuentroVis extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btnTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarActionPerformed
-        cronometro.stop();
+        cronometro.suspend();
     }//GEN-LAST:event_btnTerminarActionPerformed
 
     /**
