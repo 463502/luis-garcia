@@ -6,35 +6,43 @@
 package proyecto.vistas;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import javax.swing.table.DefaultTableModel;
-import proyecto.entidades.Equipo;
-import proyecto.entidades.Evento;
-import proyecto.entidades.Jugador;
+import proyecto.entidades.*;
+import static proyecto.vistas.EncuentroVis.*;
 
 /**
  *
  * @author koro
  */
 public class RegistrarEvento extends javax.swing.JDialog {
-    ArrayList<Evento>evento;
+
+    ArrayList<Evento> evento;
     DefaultTableModel EventosTabla;
-    public RegistrarEvento(java.awt.Frame parent, boolean modal,ArrayList<Evento>evento) {
+
+    public RegistrarEvento(java.awt.Frame parent, boolean modal, ArrayList<Evento> evento) {
         super(parent, modal);
         initComponents();
-        this.evento=evento;
-        EventosTabla=(DefaultTableModel) tlbEventos.getModel();
+        this.evento = evento;
+        EventosTabla = (DefaultTableModel) tlbEventos.getModel();
+        vaciarTabla();
+        jlbTiempo.setText(min + ":" + seg + ":" + miliS);
     }
-        public void cargarTabla() {
+
+    public void cargarTabla() {
+        vaciarTabla();
         for (Evento e : evento) {
             EventosTabla.addRow(new Object[]{
-                e.getEquipo(),
                 e.getEvento(),
+                e.getEquipo(),
                 e.getJugador(),
                 e.getNota(),
                 e.getTimepo()
             });
+        }
+    }
+      public void vaciarTabla() {
+        for (int i = EventosTabla.getRowCount() - 1; i >= 0; i--) {
+            EventosTabla.removeRow(i);
         }
     }
 
@@ -357,7 +365,7 @@ public class RegistrarEvento extends javax.swing.JDialog {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -373,7 +381,7 @@ public class RegistrarEvento extends javax.swing.JDialog {
         cbxEquipo.setBackground(new java.awt.Color(0, 51, 102));
         cbxEquipo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cbxEquipo.setForeground(new java.awt.Color(255, 255, 255));
-        cbxEquipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------- SELECCIONAR --------" }));
+        cbxEquipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------- SELECCIONAR --------", "Chivas", "America" }));
 
         jLabel87.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel87.setForeground(new java.awt.Color(255, 255, 255));
@@ -382,7 +390,7 @@ public class RegistrarEvento extends javax.swing.JDialog {
         cbxDeportista.setBackground(new java.awt.Color(0, 51, 102));
         cbxDeportista.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cbxDeportista.setForeground(new java.awt.Color(255, 255, 255));
-        cbxDeportista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------- SELECCIONAR ---------" }));
+        cbxDeportista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------- SELECCIONAR ---------", "Dvinchi", "Naragato", " " }));
 
         jLabel88.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel88.setForeground(new java.awt.Color(255, 255, 255));
@@ -432,9 +440,9 @@ public class RegistrarEvento extends javax.swing.JDialog {
                         .addComponent(jlbTiempo)
                         .addGap(45, 45, 45)
                         .addComponent(btnRegistrar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,7 +485,7 @@ public class RegistrarEvento extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -490,22 +498,25 @@ public class RegistrarEvento extends javax.swing.JDialog {
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
-
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        Evento e=new Evento();
-        e.setEquipo(cbxEquipo.getSelectedItem());
-        e.setJugador(cbxDeportista.getSelectedItem());
+
+        Evento e = new Evento(
+                cbxTipo.getSelectedItem().toString(),
+                cbxEquipo.getSelectedItem().toString(),
+                cbxDeportista.getSelectedItem().toString(),
+                txtNota.getText(),
+                jlbTiempo.getText());
+        e.setEquipo(cbxEquipo.getSelectedItem().toString());
+        e.setJugador(cbxDeportista.getSelectedItem().toString());
         e.setNota(txtNota.getText());
         e.setTiempo(jlbTiempo.getText());
-        e.setEvento(cbxTipo.getSelectedItem());
-        
-        
-        evento.add(e);
+        e.setEvento(cbxTipo.getSelectedItem().toString());
 
+        evento.add(e);
+        cargarTabla();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnRegistrar;

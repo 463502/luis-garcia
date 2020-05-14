@@ -5,13 +5,13 @@ import java.util.Date;
 
 public class Evento {
 
-    ArrayList<Evento> evento;
-    private Equipo equipo[];
-    private Jugador jugador[];
+    private String evento;
+    private String equipo;
+    private String jugador;
     private String nota;
-    private Date tiempo;
+    private String tiempo;
 
-    public Evento(ArrayList<Evento> evento, Equipo[] equipo, Jugador[] jugador, String nota, Date tiempo) {
+    public Evento(String evento, String equipo, String jugador, String nota, String tiempo) {
         this.evento = evento;
         this.equipo = equipo;
         this.jugador = jugador;
@@ -19,15 +19,12 @@ public class Evento {
         this.tiempo = tiempo;
     }
 
-    public Evento() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public ArrayList<Evento> getEvento() {
+    
+    public String getEvento() {
         return evento;
     }
 
-    public void setEvento(ArrayList<Evento> evento) {
+    public void setEvento(String evento) {
         this.evento = evento;
     }
 
@@ -36,19 +33,19 @@ public class Evento {
         return true;
     }
 
-    public Equipo[] getEquipo() {
+    public String getEquipo() {
         return equipo;
     }
 
-    public void setEquipo(Equipo[] equipo) {
+    public void setEquipo(String equipo) {
         this.equipo = equipo;
     }
 
-    public Jugador[] getJugador() {
+    public String getJugador() {
         return jugador;
     }
 
-    public void setJugador(Jugador[] jugador) {
+    public void setJugador(String jugador) {
         this.jugador = jugador;
     }
 
@@ -60,11 +57,11 @@ public class Evento {
         this.nota = nota;
     }
 
-    public Date getTimepo() {
+    public String getTimepo() {
         return tiempo;
     }
 
-    public void setTiempo(Date timepo) {
+    public void setTiempo(String timepo) {
         this.tiempo = timepo;
     }
 

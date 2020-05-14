@@ -11,7 +11,6 @@ import java.util.Date;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import proyecto.entidades.*;
-import static proyecto.vistas.main.miliS;
 
 /**
  *
@@ -110,6 +109,11 @@ public class EncuentroVis extends javax.swing.JFrame {
         btnRegistroEquipo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnRegistroEquipo.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistroEquipo.setText("Registrar Equipos");
+        btnRegistroEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroEquipoActionPerformed(evt);
+            }
+        });
 
         btnRegistrarDeportistas.setBackground(new java.awt.Color(0, 51, 102));
         btnRegistrarDeportistas.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -151,7 +155,7 @@ public class EncuentroVis extends javax.swing.JFrame {
 
         jlbTiempo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jlbTiempo.setForeground(new java.awt.Color(255, 255, 255));
-        jlbTiempo.setText("00:34");
+        jlbTiempo.setText("00:00:00");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -264,6 +268,12 @@ public class EncuentroVis extends javax.swing.JFrame {
     private void btnTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarActionPerformed
         cronometro.suspend();
     }//GEN-LAST:event_btnTerminarActionPerformed
+
+    private void btnRegistroEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroEquipoActionPerformed
+        JDialog RegistrarEquipoDialog=new RegistroEquipo(this, true, equipo);
+        RegistrarEquipoDialog.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistroEquipoActionPerformed
 
     /**
      * @param args the command line arguments
