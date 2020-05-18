@@ -20,24 +20,16 @@ public class Equipo {
     private String id;
     private int numeroJugadores;
     private String color;
-    private ArrayList <Jugador> jugadores = new ArrayList ();
-    private Jugador Jugador;
 
-    public Equipo(String nombre, String id, int numeroJugadores, String color, Jugador Jugador) {
+    public Equipo(String nombre, String id, int numeroJugadores, String color) {
         this.nombre = nombre;
         this.id = id;
         this.numeroJugadores = numeroJugadores;
         this.color = color;
-        this.Jugador = Jugador;
     }
      
     public boolean Jugar(){
         return true;
-    }
-    
-    public void registrar(ArrayList<Jugador> jugadores){
-        
-        this.jugadores.add(Jugador);
     }
 
     public String getNombre() {
@@ -72,19 +64,4 @@ public class Equipo {
         this.color = color;
     }
 
-    public ArrayList <Jugador> getJugadores() {
-        return jugadores;
-    }
-
-    public void setJugadores(ArrayList <Jugador> jugadores) {
-        this.jugadores = jugadores;
-    }
-
-    public Jugador getJugador() {
-        return Jugador;
-    }
-
-    public void setJugador(Jugador Jugador) {
-        this.Jugador = Jugador;
-    }
 }
