@@ -20,6 +20,17 @@ public class Jugador {
     private String posicion;
     private String equipo;
 
+    public Jugador(String nombre, String apellido, String apodo, int numero, String posicion) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.apodo = apodo;
+        this.numero = numero;
+        this.posicion = posicion;
+    }
+
+    
+    
+    
     public Jugador(String nombre, String apellido, String apodo, int numero, String posicion, String equipo) {
         this.nombre = nombre;
         this.apellido = apellido;

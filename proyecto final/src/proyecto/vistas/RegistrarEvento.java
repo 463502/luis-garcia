@@ -7,8 +7,9 @@ package proyecto.vistas;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import mx.itson.proyectoFinal.Controladores.Control;
 import proyecto.entidades.*;
-import static proyecto.vistas.EncuentroVis.*;
+import static proyecto.vistas.MainEncuentro.*;
 
 /**
  *
@@ -16,8 +17,9 @@ import static proyecto.vistas.EncuentroVis.*;
  */
 public class RegistrarEvento extends javax.swing.JDialog {
 
-    ArrayList<Evento> evento;
+    static ArrayList<Evento> evento;
     DefaultTableModel EventosTabla;
+    Control control = new Control();
 
     public RegistrarEvento(java.awt.Frame parent, boolean modal, ArrayList<Evento> evento) {
         super(parent, modal);
@@ -25,8 +27,20 @@ public class RegistrarEvento extends javax.swing.JDialog {
         this.evento = evento;
         EventosTabla = (DefaultTableModel) tlbEventos.getModel();
         vaciarTabla();
+        cargarTabla();
         jlbTiempo.setText(min + ":" + seg + ":" + miliS);
+
+        for (int i = 0; i < Control.getEquipos().size(); i++) {
+            cbxEquipo.addItem(Control.getEquipos().get(i).getNombre());
+        }
+
     }
+    public void limpiar(){
+        txtNota.setText("");
+        
+    }
+
+    
 
     public void cargarTabla() {
         vaciarTabla();
@@ -40,7 +54,8 @@ public class RegistrarEvento extends javax.swing.JDialog {
             });
         }
     }
-      public void vaciarTabla() {
+
+    public void vaciarTabla() {
         for (int i = EventosTabla.getRowCount() - 1; i >= 0; i--) {
             EventosTabla.removeRow(i);
         }
@@ -347,7 +362,7 @@ public class RegistrarEvento extends javax.swing.JDialog {
 
         cbxTipo.setBackground(new java.awt.Color(0, 51, 102));
         cbxTipo.setForeground(new java.awt.Color(255, 255, 255));
-        cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------- SELECCIONAR ---------", "Tarjeta Roja", "Tarjeta Amarilla" }));
+        cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------- SELECCIONAR ---------", "Tarjeta Roja", "Tarjeta Amarilla", "Gool", "Tiro de Esquina" }));
 
         jLabel85.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel85.setForeground(new java.awt.Color(255, 255, 255));
@@ -381,7 +396,11 @@ public class RegistrarEvento extends javax.swing.JDialog {
         cbxEquipo.setBackground(new java.awt.Color(0, 51, 102));
         cbxEquipo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cbxEquipo.setForeground(new java.awt.Color(255, 255, 255));
-        cbxEquipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--------- SELECCIONAR --------", "Chivas", "America" }));
+        cbxEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxEquipoActionPerformed(evt);
+            }
+        });
 
         jLabel87.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel87.setForeground(new java.awt.Color(255, 255, 255));
@@ -390,7 +409,7 @@ public class RegistrarEvento extends javax.swing.JDialog {
         cbxDeportista.setBackground(new java.awt.Color(0, 51, 102));
         cbxDeportista.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cbxDeportista.setForeground(new java.awt.Color(255, 255, 255));
-        cbxDeportista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------- SELECCIONAR ---------", "Dvinchi", "Naragato", " " }));
+        cbxDeportista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-------- SELECCIONAR ---------" }));
 
         jLabel88.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel88.setForeground(new java.awt.Color(255, 255, 255));
@@ -514,9 +533,47 @@ public class RegistrarEvento extends javax.swing.JDialog {
 
         evento.add(e);
         cargarTabla();
+        String seleccionTipo = cbxTipo.getSelectedItem().toString();
+        String seleccionEquipo = cbxEquipo.getSelectedItem().toString();
+        if (seleccionTipo.equals("Gool")) {
+            int idequip = cbxEquipo.getSelectedIndex();
+            control.añadirGool(idequip);
+        }
+        if (seleccionTipo.equals("Tarjeta Roja")) {
+            int idequip = cbxEquipo.getSelectedIndex();
+            control.añadirTarjetaRoja(idequip);
+        }
+        if (seleccionTipo.equals("Tarjeta Amarilla")) {
+            int idequip = cbxEquipo.getSelectedIndex();
+            control.añadirTarjetaAmarilla(idequip);
+        }
+        if (seleccionTipo.equals("Tiro de Esquina")) {
+            int idequip = cbxEquipo.getSelectedIndex();
+            control.añadirTiroDeEsquina(idequip);
+        }
+        limpiar();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void cbxEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEquipoActionPerformed
+        String seleccion = cbxEquipo.getSelectedItem().toString();
+        for (int i = 0; i < Control.getEquipos().size(); i++) {
+            if (Control.getEquipos().get(i).getNombre() == seleccion) {
+                cbxDeportista.removeAllItems();
+                for (int b = 0; b < Control.getEquipos().get(i).getJugadores().size(); b++) {
+                    cbxDeportista.addItem(Control.getEquipos().get(i).getJugadores().get(b).getNombre());
+                }
+            }
+            i++;
+            if (Control.getEquipos().get(i).getNombre() == seleccion) {
+                cbxDeportista.removeAllItems();
+                for (int b = 0; b < Control.getEquipos().get(i).getJugadores().size(); b++) {
+                    cbxDeportista.addItem(Control.getEquipos().get(i).getJugadores().get(b).getNombre());
+                }
+            }
+        }
+    }//GEN-LAST:event_cbxEquipoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnRegistrar;
